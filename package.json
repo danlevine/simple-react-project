@@ -1,7 +1,7 @@
 {
   "name": "simple-react-project",
   "version": "1.0.0",
-  "description": "Simple project to practice some React/Redux/Webpack",
+  "description": "One of those classic React, Redux and Webpack messarounds",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +24,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
+    "dev": "webpack-dev-server --content-base src --inline --hot"
   }
 }
