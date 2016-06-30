@@ -1,22 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import tryitApp from './reducers';
 import App from './components/App';
 
-import { loadState, saveState } from './localStorage';
-import throttle from 'lodash/throttle';
+import configureStore from './configureStore'
 
-const persistedState = loadState();
-
-let store = createStore(tryitApp, persistedState);
-
-store.subscribe(throttle(() => {
-  saveState({
-    items: store.getState().items
-  });
-}, 1000));
+const store = configureStore();
 
 render(
   <Provider store={store}>
