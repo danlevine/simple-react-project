@@ -13,22 +13,18 @@ const getVisibleItems = (items, filter) => {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    items: getVisibleItems(state.items, state.visibilityFilter)
-  };
-};
+const mapStateToProps = (state) => ({
+  items: getVisibleItems(state.items, state.visibilityFilter)
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onItemClick: (id) => {
-      dispatch(toggleCompleteItem(id));
-    },
-    onItemDeleteClick: (id) => {
-      dispatch(deleteItem(id));
-    }
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onItemClick(id) {
+    dispatch(toggleCompleteItem(id));
+  },
+  onItemDeleteClick(id) {
+    dispatch(deleteItem(id));
+  }
+});
 
 const VisibleItemList = connect(
   mapStateToProps,

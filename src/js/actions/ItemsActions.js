@@ -1,27 +1,33 @@
-import UUID from 'node-uuid';
+import Firebase from 'firebase';
+import { v4 } from 'node-uuid';
 import * as types from '../constants/ActionTypes';
 
+// const Items = new Firebase("https://flickering-fire-3051.firebaseio.com/notes");
 
-let nextTodoId = 0
-
-export function addItem(name) {  
-  return {
-    type: types.ADD_ITEM,
-    name,
-    id: UUID.v4()
+export const fetchItems = () => {
+  return dispatch => {
+    Items.on('value', snapshot => {
+      dispatch({
+        type: types.FETCH_ITEMS,
+        payload: snapshot.val()
+      });
+    });
   };
 };
 
-export function deleteItem(id) {  
-  return {
-    type: types.DELETE_ITEM,
-    id
-  };
-};
 
-export function toggleCompleteItem(id) {  
-  return {
-    type: types.TOGGLE_COMPLETE_ITEM,
-    id
-  };
-};
+export const addItem = (name) => ({
+  type: types.ADD_ITEM,
+  name,
+  id: v4()
+});
+
+export const deleteItem = (id) => ({
+  type: types.DELETE_ITEM,
+  id
+});
+
+export const toggleCompleteItem = (id) => ({
+  type: types.TOGGLE_COMPLETE_ITEM,
+  id
+});
