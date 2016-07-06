@@ -26,6 +26,8 @@ const createList = (filter) => {
           state;
       case types.TOGGLE_COMPLETE_ITEM:
         return handleToggle(state, action);
+      case types.DELETE_ITEM:
+        return state.filter(id => id !== action.response.result);
       default:
         return state;
     };

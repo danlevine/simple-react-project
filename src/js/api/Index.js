@@ -33,6 +33,13 @@ export const addItem = (name) =>
   return item;
  });
 
+ export const deleteItem = (id) =>
+  delay(500).then(() => {
+    const item = fakeDatabase.items.find(i => i.id === id);
+    fakeDatabase.items.splice(fakeDatabase.items.indexOf(item), 1);
+    return item;
+  });
+
 export const toggleItem = (id) =>
   delay(500).then(() => {
     const item = fakeDatabase.items.find(i => i.id === id);

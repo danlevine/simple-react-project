@@ -16,6 +16,14 @@ export const addItem = (name) => (dispatch) =>
     });
   });
 
+export const deleteItem = (id) => (dispatch) =>
+  api.deleteItem(id).then(response => {
+    dispatch({
+      type: types.DELETE_ITEM,
+      response: normalize(response, schema.item)
+    });
+  });
+
 export const toggleItem = (id) => (dispatch) =>
   api.toggleItem(id).then(response => {
     dispatch({
