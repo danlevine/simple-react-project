@@ -1,21 +1,20 @@
-import { createStore } from 'redux';
-import tryitApp from './reducers';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import tryitApp from './reducers/index';
 
-import { loadState, saveState } from './localStorage';
-import throttle from 'lodash/throttle';
 
 const configureStore = () => {
-  const persistedState = loadState();
+  const middlewares = [thunk];
+  
+  if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(createLogger());
+  }
 
-  let store = createStore(tryitApp, persistedState);
-
-  store.subscribe(throttle(() => {
-    saveState({
-      items: store.getState().items
-    });
-  }, 1000));
-
-  return store;
+  return createStore(
+    tryitApp,
+    applyMiddleware(...middlewares)
+  );
 };
 
 export default configureStore;

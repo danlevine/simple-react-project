@@ -1,10 +1,33 @@
 import { combineReducers } from 'redux';
-import items from './items';
-import visibilityFilter from './visibilityFilter';
+import { v4 } from 'node-uuid';
 
-const tryitApp = combineReducers({
-  items,
-  visibilityFilter
+import * as types from '../constants/ActionTypes';
+import byId, * as fromById from './byId';
+import createList, * as fromList from './createList';
+
+
+
+const listByFilter = combineReducers({
+  all: createList('all'),
+  active: createList('active'),
+  completed: createList('completed')
 });
 
-export default tryitApp;
+const items = combineReducers({
+  byId,
+  listByFilter
+});
+
+export default items;
+
+// SELECTORS
+export const getVisibleItems = (state, filter) => {
+  const ids = fromList.getIds(state.listByFilter[filter]);
+  return ids.map(id => fromById.getItem(state.byId, id));
+};
+
+export const getIsFetching = (state, filter) =>
+  fromList.getIsFetching(state.listByFilter[filter]);
+
+export const getErrorMessage = (state, filter) =>
+  fromList.getErrorMessage(state.listByFilter[filter]);
