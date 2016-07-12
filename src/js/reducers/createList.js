@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import * as types from '../constants/ActionTypes';
 
+
+
 const createList = (filter) => {
   const handleToggle = (state, action) => {
     const { result: toggleId, entities} = action.response;
@@ -14,16 +16,16 @@ const createList = (filter) => {
       state;
   };
 
-  const ids = (state = [], action) => {
+  const ids = (state = {}, action) => {
     switch(action.type) {
       case types.FETCH_ITEMS_SUCCESS:
         return filter === action.filter ?
           action.response.result :
           state;
-      case types.ADD_ITEM_SUCCESS:
-        return filter !== 'completed' ?
-          [...state, action.response.result] :
-          state;
+      // case types.ADD_ITEM_SUCCESS:
+        // return filter !== 'completed' ?
+          // {...state, action.response.result} :
+          // state;
       case types.TOGGLE_COMPLETE_ITEM:
         return handleToggle(state, action);
       case types.DELETE_ITEM:

@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 
 const byId = (state = {}, action) => {
+  console.log('action!', action);
   if (action.response) {
     return {
       ...state,

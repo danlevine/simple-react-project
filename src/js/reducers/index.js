@@ -22,8 +22,11 @@ export default items;
 
 // SELECTORS
 export const getVisibleItems = (state, filter) => {
+  console.log('reducers.js:state', state)
   const ids = fromList.getIds(state.listByFilter[filter]);
-  return ids.map(id => fromById.getItem(state.byId, id));
+  console.log('reducers.js:ids', ids);
+  // return ids.map(id => fromById.getItem(state.byId, id));
+  return ids;
 };
 
 export const getIsFetching = (state, filter) =>

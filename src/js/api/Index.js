@@ -1,4 +1,21 @@
+import firebase from 'firebase';
 import { v4 } from 'node-uuid';
+
+
+
+// const Items = new Firebase("https://flickering-fire-3051.firebaseio.com/notes");
+
+// Initialize Firebase
+// const config = {
+//   apiKey: "AIzaSyC0WHChgY9Ahgr7t4NRCQajmL_vG6mtQ1o",
+//   authDomain: "flickering-fire-3051.firebaseapp.com",
+//   databaseURL: "https://flickering-fire-3051.firebaseio.com",
+//   storageBucket: "flickering-fire-3051.appspot.com",
+// };
+// firebase.initializeApp(config);
+
+// const rootRef = firebase.database().ref();
+// console.log('***FIREBASE***', rootRef);
 
 // This is a fake in-memory implementation of something
 // that would be implemented by calling a REST server.
@@ -47,17 +64,27 @@ export const toggleItem = (id) =>
     return item;
   });
 
-export const fetchItems = (filter) =>
-  delay(500).then(() => {
+// export const fetchItems = (filter) =>
+  // new Promise(resolve => setTimeout(resolve, ms));
 
-    switch (filter) {
-      case 'all':
-        return fakeDatabase.items;
-      case 'active':
-        return fakeDatabase.items.filter(i => !i.completed);
-      case 'completed':
-        return fakeDatabase.items.filter(i => i.completed);
-      default:
-        throw new Error(`Unknown filter: ${filter}`);
-    }
-  });
+  // delay(0).then(() => {
+  // console.log('tester');
+  // rootRef.on('value', snapshot => {
+    // console.log('fetchItems()::snapshot.val().items', snapshot.val().items);
+    // return snapshot.val().items;
+  // });
+  // });
+    // rootRef.once('value').then(() => console.log('hahaha'));
+  // delay(500).then(() => {
+
+  //   switch (filter) {
+  //     case 'all':
+  //       return fakeDatabase.items;
+  //     case 'active':
+  //       return fakeDatabase.items.filter(i => !i.completed);
+  //     case 'completed':
+  //       return fakeDatabase.items.filter(i => i.completed);
+  //     default:
+  //       throw new Error(`Unknown filter: ${filter}`);
+  //   }
+  // });

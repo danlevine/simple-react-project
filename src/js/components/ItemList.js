@@ -2,12 +2,13 @@ import React, { PropTypes } from 'react';
 import Item from './Item';
 
 const ItemList = ({ items, onItemClick, onDeleteClick }) => {
+  console.log('ItemList:items', items);
   return (
     <ul>
-      {items.map(item =>
+      {Object.keys(items).map(key =>
         <Item
-          key={item.id}
-          {...item}
+          key={key}
+          name={items[key]}
           onClick={() => onItemClick(item.id)}
           onDeleteClick={() => onDeleteClick(item.id)}
         />
